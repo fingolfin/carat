@@ -41,7 +41,7 @@ static bravais_TYP **get_supergr(char *pfad,
 
    FILE *infile;
 
-   MP_INT aff_name_ri;
+   mpz_t aff_name_ri;
 
    TSubgroup_TYP *SG;
 

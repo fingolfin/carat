@@ -217,7 +217,7 @@ int einordnen_2(bahn** erg,matrix_TYP *h, matrix_TYP *new_vec,int l,
 @-----------------------------------------------------------------------
 @
 @ int strong_generators_2(matrix_TYP **base,bravais_TYP *U,
-@                            matrix_TYP ***K,int *anz,MP_INT *mp)
+@                            matrix_TYP ***K,int *anz,mpz_t *mp)
 @
 @  This function decides whether or not the integral group generated
 @  by the matrices in U->gen[i], 0<= i< U->gen_no, is finite.
@@ -238,8 +238,8 @@ int einordnen_2(bahn** erg,matrix_TYP *h, matrix_TYP *new_vec,int l,
 @  matrix_TYP ***K  : the function returns elements of the minkowski kernel
 @                     via this pointer.
 @  int *anz         : anz[0] is the number of returned elements in K
-@  MP_INT *mp       : a multiple precesion integer. Call the function with
-@                     strong_generators_2(....,&x) for an MP_INT x, which
+@  mpz_t *mp       : a multiple precesion integer. Call the function with
+@                     strong_generators_2(....,&x) for an mpz_t x, which
 @                     has been initialized via mpz_init(&x) before.
 @
 @ SIDEEFECT: none are known.
@@ -247,7 +247,7 @@ int einordnen_2(bahn** erg,matrix_TYP *h, matrix_TYP *new_vec,int l,
 @
 ************************************************************************/
 int strong_generators_2(matrix_TYP **base,bravais_TYP *U,
-                             matrix_TYP ***K,int *anz,MP_INT *mp)
+                             matrix_TYP ***K,int *anz,mpz_t *mp)
 {
    bahn **erg;
 

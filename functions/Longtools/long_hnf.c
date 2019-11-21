@@ -26,7 +26,7 @@ int
 long_row_hnf (matrix_TYP *Mat)
 {
   int rang;
-  MP_INT **M;
+  mpz_t **M;
  
   M = matrix_to_MP_mat(Mat);
   rang = MP_hnf(M, Mat->rows, Mat->cols);
@@ -71,7 +71,7 @@ int
 long_row_trf_hnf (matrix_TYP *M, matrix_TYP *T)
 {
   int rang;
-  MP_INT **N, **S;
+  mpz_t **N, **S;
 
   N = matrix_to_MP_mat(M);
   S = init_MP_mat(M->rows, M->rows);
@@ -97,7 +97,7 @@ int
 long_row_hnf_simultaneous (matrix_TYP *A, matrix_TYP *B)
 {
   int rang;
-  MP_INT **MA, **MB;
+  mpz_t **MA, **MB;
 
   MA = matrix_to_MP_mat(A);
   MB = matrix_to_MP_mat(B);

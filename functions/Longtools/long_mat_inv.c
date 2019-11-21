@@ -22,8 +22,8 @@
 matrix_TYP *
 long_mat_inv (matrix_TYP *A)
 {
-   MP_INT ***E, **MA, **MB;
-   MP_INT Ekgv;
+   mpz_t ***E, **MA, **MB;
+   mpz_t Ekgv;
    int Ecols;
    matrix_TYP *erg;
    int i,j;
@@ -35,10 +35,10 @@ long_mat_inv (matrix_TYP *A)
      exit(3);
    }
    MA = matrix_to_MP_mat(A);
-   MB = (MP_INT **) xmalloc(A->cols *sizeof(MP_INT *));
+   MB = (mpz_t **) xmalloc(A->cols *sizeof(mpz_t *));
    for(i=0;i<A->cols;i++)
    {
-     MB[i] = (MP_INT *) xmalloc(A->cols *sizeof(MP_INT));
+     MB[i] = (mpz_t *) xmalloc(A->cols *sizeof(mpz_t));
      for(j=0;j<A->cols;j++)
        mpz_init(&MB[i][j]);
      mpz_set_si(&MB[i][i], 1);

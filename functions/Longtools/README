@@ -5,10 +5,10 @@
 @---------------------------------------------------------------------------
 @
 @---------------------------------------------------------------------------
-@ MP_INT **matrix_to_MP_mat(M)
+@ mpz_t **matrix_to_MP_mat(M)
 @ matrix_TYP *M;
 @
-@  allocated an 2-dimensional array of MP_INT of the size
+@  allocated an 2-dimensional array of mpz_t of the size
 @  Mat->rows x Mat->cols,
 @  converts the entries of Mat->array.SZ to MP_INt and writes 
 @  them into the array.
@@ -16,33 +16,33 @@
 @
 @---------------------------------------------------------------------------
 @ matrix_TYP *MP_mat_to_matrix(M, rows, cols)
-@ MP_INT **M;
+@ mpz_t **M;
 @ int rows, cols;
 @
-@ converts the 2-dimensional array M of MP_INT to a matrix_TYP.
+@ converts the 2-dimensional array M of mpz_t to a matrix_TYP.
 @ if the entries in M are to big, the function exits with an error message.
 @---------------------------------------------------------------------------
 @
 @---------------------------------------------------------------------------
 @ void write_MP_mat_to_matrix(Mat, mp)
 @ matrix_TYP *Mat;
-@ MP_INT **mp;
+@ mpz_t **mp;
 @
 @ converts the entries of 'mp' and write them to mat->array.SZ
 @ If the entries are to big, the programm exits
 @---------------------------------------------------------------------------
 @
 @---------------------------------------------------------------------------
-@ MP_INT **init_MP_mat(rows, cols)
+@ mpz_t **init_MP_mat(rows, cols)
 @ int rows, cols;
 @
-@ intitializes a 2-dimensional array of MP_INT of size rows x cols
+@ intitializes a 2-dimensional array of mpz_t of size rows x cols
 @ and sets all entries 0.
 @---------------------------------------------------------------------------
 @
 @---------------------------------------------------------------------------
 @ void free_MP_mat(M, rows, cols)
-@ MP_INT **M;
+@ mpz_t **M;
 @ int rows, cols;
 @
 @ Clears the entries in the 2-dimensional array 'M' and frees
@@ -57,7 +57,7 @@
 @
 @-------------------------------------------------------------------------
 @ int MP_trf_gauss(M, Trf, rows, cols)
-@ MP_INT **M, **Trf;
+@ mpz_t **M, **Trf;
 @ int rows, cols;
 @ The Matrix M is transformed to a matrix M such that
 @ M_new = Trf * M_old is Gauss-reduced, with Trf integral with
@@ -66,7 +66,7 @@
 @-------------------------------------------------------------------------
 @---------------------------------------------------------------------------
 @ int MP_row_gauss(M, rows, cols)
-@ MP_INT **M;
+@ mpz_t **M;
 @ int rows, cols;
 @
 @ The same as MP_trf_gauss without calulating the transformation
@@ -75,7 +75,7 @@
 @
 @---------------------------------------------------------------------------
 @ int MP_row_gauss_simultaneous(M, rows, cols, B, Bcols)
-@ MP_INT **M, **B;
+@ mpz_t **M, **B;
 @ int rows, cols, Bcols;
 @
 @ applies an integral gaussian algorithm (on the rows) to to 2-dimensional
@@ -85,13 +85,13 @@
 @
 @------------------------------------------------------------------------
 @
-@ void MP_row_gauss_reverse(MP_INT **A,int rows,int cols,int option)
+@ void MP_row_gauss_reverse(mpz_t **A,int rows,int cols,int option)
 @
-@ Performs a manhattan style gauss algorithm on the MP_INT matrix
+@ Performs a manhattan style gauss algorithm on the mpz_t matrix
 @ M, which has to be gauss reduced by MP_row_gauss before.
 @ The algorithm is not done complete for sake of speed!
 @
-@ MP_INT **A   : The matrix in question. It will be changed!
+@ mpz_t **A   : The matrix in question. It will be changed!
 @ int rows     : the rows of A. It is suffisient to feed the rank in here.
 @ int cols     : the number of columns of A.
 @ int option   : this flag determines the behaviour of the function:
@@ -113,19 +113,19 @@
 @
 @---------------------------------------------------------------------------
 @ int MP_trf_hnf(M, Trf, rows, cols)
-@ MP_INT **M, **Trf;
+@ mpz_t **M, **Trf;
 @ int rows, cols;
 @
 @---------------------------------------------------------------------------
 @---------------------------------------------------------------------------
 @ int MP_hnf(M, rows, cols)
-@ MP_INT **M;
+@ mpz_t **M;
 @ int rows, cols;
 @---------------------------------------------------------------------------
 @
 @---------------------------------------------------------------------------
 @ int MP_hnf_simultaneous(M, rows, cols, B, Bcols)
-@ MP_INT **M, **B;
+@ mpz_t **M, **B;
 @ int rows, cols, Bcols;
 @
 @---------------------------------------------------------------------------
@@ -137,7 +137,7 @@
 @
 @---------------------------------------------------------------------------
 @ void MP_pair_red(G, T, n)
-@ MP_INT **G, **T;
+@ mpz_t **G, **T;
 @ int   n;
 @
 @  Applies a pair reduction to the positive definite n x n - matrix G
@@ -155,10 +155,10 @@
 @
 @---------------------------------------------------------------------------
 @ void MP_reduction_sort(G,T,n)
-@ MP_INT **G, **T;
+@ mpz_t **G, **T;
 @ int n;
 @
-@ The same as 'red_sort' in directory 'Reduction' for MP_INT** insted
+@ The same as 'red_sort' in directory 'Reduction' for mpz_t** insted
 @ of matrix_TYP*
 @---------------------------------------------------------------------------
 @
@@ -169,8 +169,8 @@
 @---------------------------------------------------------------------------
 @
 @-------------------------------------------------------------------------
-@ MP_INT ***MP_solve_mat(M, rows, cols, B, Bcols, X1cols, X0kgv)
-@ MP_INT **M, **B, *X0kgv;
+@ mpz_t ***MP_solve_mat(M, rows, cols, B, Bcols, X1cols, X0kgv)
+@ mpz_t **M, **B, *X0kgv;
 @ int rows, cols, Bcols, *X1cols;
 @
 @ MP_solve_mat(M) calculates Matrix X[0] with MX[0] = B, and

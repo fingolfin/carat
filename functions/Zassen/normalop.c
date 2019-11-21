@@ -30,13 +30,13 @@ static void mod(int *a,int b)
    if (a[0]<0) a[0] += b;
 }
 
-void valuation(matrix_TYP *x,matrix_TYP *D,MP_INT *val)
+void valuation(matrix_TYP *x,matrix_TYP *D,mpz_t *val)
 {
    int first,
        last,
        i;
 
-   MP_INT prod,
+   mpz_t prod,
           tmp;
 
    mpz_init_set_si(&prod,1);
@@ -60,7 +60,7 @@ void valuation(matrix_TYP *x,matrix_TYP *D,MP_INT *val)
    return;
 } /* valuation(.....) */
 
-static int hash(struct tree *p,MP_INT *valuations,MP_INT *new_val,int pos)
+static int hash(struct tree *p,mpz_t *valuations,mpz_t *new_val,int pos)
 {
 
    int cmp;
@@ -127,7 +127,7 @@ static int smallest(struct tree *p)
 @                       matrix_TYP *D,
 @                       int option,
 @                       char *B,
-@                       MP_INT *l,
+@                       mpz_t *l,
 @                       int *anz,
 @                       int **word,
 @                       int word_flag,
@@ -168,7 +168,7 @@ matrix_TYP *orbit_rep(matrix_TYP *x,
                       matrix_TYP *D,
                       int option,
                       char *B,
-                      MP_INT *l,
+                      mpz_t *l,
                       int *anz,
                       int **word,
                       int word_flag,
@@ -184,7 +184,7 @@ matrix_TYP *orbit_rep(matrix_TYP *x,
      **orb_words = 0,
        speicher;      /* the number of allocated memory for valuations
                           and orbit, and orb_words */
-   MP_INT *valuations,
+   mpz_t *valuations,
            new_val;        /* the valuation of the newly calculated vector */
 
    matrix_TYP *erg,
@@ -200,7 +200,7 @@ matrix_TYP *orbit_rep(matrix_TYP *x,
    /* get memory */
    p = (struct tree *) calloc(1,sizeof(struct tree));
    speicher = MIN_SPEICHER;
-   valuations = (MP_INT *) malloc(speicher * sizeof(MP_INT));
+   valuations = (mpz_t *) malloc(speicher * sizeof(mpz_t));
    for (i=0;i<speicher;i++) mpz_init(&valuations[i]);
    mpz_init(&new_val);
    orbit = (matrix_TYP **) malloc(speicher * sizeof(matrix_TYP*));
@@ -263,8 +263,8 @@ matrix_TYP *orbit_rep(matrix_TYP *x,
             /* get more memory is nessesary */
             if (anz[0] >= speicher){
                speicher += MIN_SPEICHER;
-               valuations = (MP_INT *) realloc(valuations,
-                                       speicher * sizeof(MP_INT));
+               valuations = (mpz_t *) realloc(valuations,
+                                       speicher * sizeof(mpz_t));
                for (k=anz[0];k<speicher;k++) mpz_init(&valuations[k]);
                orbit = (matrix_TYP **) realloc(orbit,
                                     speicher * sizeof(matrix_TYP *));
@@ -569,7 +569,7 @@ void translation(matrix_TYP *TR,
 @                       matrix_TYP *R,
 @                       bravais_TYP *G,
 @                       matrix_TYP **extension,
-@                       MP_INT *a,
+@                       mpz_t *a,
 @                       int number,
 @                       int transform_flag,
 @                       int ***WORDS,
@@ -582,7 +582,7 @@ void translation(matrix_TYP *TR,
 @ the normalizer of the point group which transforms each given extension
 @ into it's least representative. This is usefull to calculate the
 @ isomorphism between two extensions which get the same name.
-@ NOTE: the name given to an extension is 0 (interpreted as MP_INT) iff
+@ NOTE: the name given to an extension is 0 (interpreted as mpz_t) iff
 @       the extension splits.
 @
 @   matrix_TYP *cozykle:   1st matrix returned by cohomolgy for G.
@@ -619,7 +619,7 @@ matrix_TYP **identify(matrix_TYP *cocycle,
                       matrix_TYP *R,
                       bravais_TYP *G,
                       matrix_TYP **extension,
-                      MP_INT *a,
+                      mpz_t *a,
                       int number,
                       int transform_flag,
                       int ***WORDS,
@@ -791,7 +791,7 @@ static int gives_rise_to_torsionfree_space_group(
 @                         matrix_TYP *R,
 @                         bravais_TYP *G,
 @                         int **lengths,
-@                         MP_INT **names,
+@                         mpz_t **names,
 @                         int *number_of_orbits,
 @                         int option)
 @
@@ -806,7 +806,7 @@ static int gives_rise_to_torsionfree_space_group(
 @   bravais_TYP *G:        the group in question.
 @   int **lengths:         length[0] returns a pointer to the lengths
 @                          of the orbits respectively
-@   MP_INT **names:        names[0] returns a pointer to the names of
+@   mpz_t **names:        names[0] returns a pointer to the names of
 @                          the cocycles as they would appear in a call
 @                          of identify(.....).
 @   int *number_of_orbits: the number of orbits the normalizer induces
@@ -821,7 +821,7 @@ matrix_TYP **extensions(matrix_TYP *cocycle,
                         matrix_TYP *R,
                         bravais_TYP *G,
                         int **lengths,
-                        MP_INT **names,
+                        mpz_t **names,
                         int *number_of_orbits,
                         int option )
 {
@@ -831,7 +831,7 @@ matrix_TYP **extensions(matrix_TYP *cocycle,
 
   char *tested;
 
-  MP_INT act_val,
+  mpz_t act_val,
          new_val,
          got_size,
          coho_size;   /* holds the size of the cohomology group */
@@ -860,7 +860,7 @@ matrix_TYP **extensions(matrix_TYP *cocycle,
 
   erg = (matrix_TYP **) malloc(sizeof(matrix_TYP *));
   lengths[0] = (int *) malloc(sizeof(int));
-  names[0] = (MP_INT *) malloc(sizeof(MP_INT));
+  names[0] = (mpz_t *) malloc(sizeof(mpz_t));
   N = (matrix_TYP **) malloc(Nanz * sizeof(matrix_TYP *));
 
   if (mpz_get_ui(&coho_size) < TWOTO21)
@@ -914,8 +914,8 @@ matrix_TYP **extensions(matrix_TYP *cocycle,
                      (number_of_orbits[0] + MIN_SPEICHER)*sizeof(matrix_TYP*));
              lengths[0] = (int *) realloc(lengths[0],
                      (number_of_orbits[0] + MIN_SPEICHER)*sizeof(int));
-             names[0] = (MP_INT *) realloc(names[0],
-                     (number_of_orbits[0] + MIN_SPEICHER)*sizeof(MP_INT));
+             names[0] = (mpz_t *) realloc(names[0],
+                     (number_of_orbits[0] + MIN_SPEICHER)*sizeof(mpz_t));
           }
           erg[number_of_orbits[0]] = convert_to_cocycle(x,cocycle,D);
           lengths[0][number_of_orbits[0]] = orbit_length;
@@ -1008,14 +1008,14 @@ static matrix_TYP **calc_elements(matrix_TYP **N,matrix_TYP **Ninv,int Nanz,
 @
 @----------------------------------------------------------------------------
 @
-@ static void no_of_fixpoints(MP_INT *res,matrix_TYP *A,matrix_TYP *D)
+@ static void no_of_fixpoints(mpz_t *res,matrix_TYP *A,matrix_TYP *D)
 @
 @
 @ CAUTION: A->array.SZ, A->cols WILL BE CHANGED!!!!
 @----------------------------------------------------------------------------
 @
 *****************************************************************************/
-static void no_of_fixpoints(MP_INT *res,matrix_TYP *A,matrix_TYP *D)
+static void no_of_fixpoints(mpz_t *res,matrix_TYP *A,matrix_TYP *D)
 {
    int i,
        first;
@@ -1045,7 +1045,7 @@ static int deal_with_small_cohomology_group(matrix_TYP *cocycle,
                                             matrix_TYP *D,
                                             matrix_TYP *R,
                                             bravais_TYP *G,
-                                            MP_INT *erg)
+                                            mpz_t *erg)
 {
 
   int i,
@@ -1053,7 +1053,7 @@ static int deal_with_small_cohomology_group(matrix_TYP *cocycle,
       order_of_H=1,
      *len;
 
-  MP_INT *names;
+  mpz_t *names;
 
   matrix_TYP **Y;
 
@@ -1091,13 +1091,13 @@ static int deal_with_small_cohomology_group(matrix_TYP *cocycle,
 @------------------------------------------------------------------------
 @
 @ void no_of_extensions(matrix_TYP *cocycle,matrix_TYP *D,
-@                        matrix_TYP *R,bravais_TYP *G,MP_INT *erg)
+@                        matrix_TYP *R,bravais_TYP *G,mpz_t *erg)
 @
 @------------------------------------------------------------------------
 @
 *************************************************************************/
 void no_of_extensions(matrix_TYP *cocycle,matrix_TYP *D,
-                        matrix_TYP *R,bravais_TYP *G,MP_INT *erg)
+                        matrix_TYP *R,bravais_TYP *G,mpz_t *erg)
 {
 
   int Nanz=G->cen_no+G->normal_no,
@@ -1107,7 +1107,7 @@ void no_of_extensions(matrix_TYP *cocycle,matrix_TYP *D,
                                      normalizer under the map to the
                                      automorphism group of H^1(...) */
 
-  MP_INT sum,       /* holds the sum over the image of N_GL(Z) in
+  mpz_t sum,       /* holds the sum over the image of N_GL(Z) in
                        Aut(H^1(...)) of the number fixpoint */
          tmp2,
          tmp3;

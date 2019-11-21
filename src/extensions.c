@@ -48,7 +48,7 @@ int main(int argc,char **argv){
   bahn **strong;
 
 
-  MP_INT number,
+  mpz_t number,
         *names;
 
   char comment[1000],
@@ -287,7 +287,7 @@ int main(int argc,char **argv){
      }
 
      convert_cocycle_to_column(Y,anz,G->dim,G->gen_no);
-     names = (MP_INT *) malloc(anz*sizeof(MP_INT));
+     names = (mpz_t *) malloc(anz*sizeof(mpz_t));
      for (i=0;i<anz;i++) mpz_init_set_si(names+i,0);
      i = is_option('t');
      if (i && optionnumber('t') == 2) i = 3;

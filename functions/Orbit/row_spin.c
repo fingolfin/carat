@@ -15,7 +15,7 @@
 @
 ****************************************************************************/
 
-static void product_of_stairs(MP_INT *x,MP_INT **A,int rows,int cols)
+static void product_of_stairs(mpz_t *x,mpz_t **A,int rows,int cols)
 {
    int i,
        j;
@@ -69,7 +69,7 @@ matrix_TYP *row_spin(matrix_TYP *x,matrix_TYP **G,int no,int option)
 
   long quot;
 
-  MP_INT **A,
+  mpz_t **A,
          **Gram,
          **TR,
           *merk,

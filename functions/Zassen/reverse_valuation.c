@@ -6,13 +6,13 @@
 @
 @----------------------------------------------------------------------------
 @
-@ static matrix_TYP *reverse_valuation(MP_INT *val,matrix_TYP *D)
+@ static matrix_TYP *reverse_valuation(mpz_t *val,matrix_TYP *D)
 @
 @ The value of val will not be changed !
 @----------------------------------------------------------------------------
 @
 *****************************************************************************/
-matrix_TYP *reverse_valuation(MP_INT *val,matrix_TYP *D)
+matrix_TYP *reverse_valuation(mpz_t *val,matrix_TYP *D)
 {
    int i,
        first,
@@ -20,7 +20,7 @@ matrix_TYP *reverse_valuation(MP_INT *val,matrix_TYP *D)
 
    matrix_TYP *erg;
 
-   MP_INT tmp,
+   mpz_t tmp,
           copy;
 
    mpz_init(&tmp);

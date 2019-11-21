@@ -134,7 +134,7 @@ bravais_TYP *space_group_from_matrix(bravais_TYP *G,
 matrix_TYP *aff_class_inf(bravais_TYP *R,
                           bravais_TYP *DATAZ,
                           matrix_TYP *PRES,
-                          MP_INT *aff_name,
+                          mpz_t *aff_name,
                           bravais_TYP **RC)
 {
 

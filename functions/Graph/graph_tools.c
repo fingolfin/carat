@@ -108,7 +108,7 @@ matrix_TYP **all_cocycles(matrix_TYP *relator_input,
                           int *anzahl,
                           matrix_TYP **matinv,
                           matrix_TYP ***X,
-                          MP_INT **names,
+                          mpz_t **names,
                           int ****WORDS,
                           int **NUMBER_OF_WORDS,
                           matrix_TYP ***N,
@@ -124,7 +124,7 @@ matrix_TYP **all_cocycles(matrix_TYP *relator_input,
 
   long dim;
 
-  MP_INT cohom_size;
+  mpz_t cohom_size;
 
 
 /* we have to have at least the identity to generate the normalizer */
@@ -152,7 +152,7 @@ isn't a cohomology group at all */
      anzahl[0] = 1;
      N[0] = NULL;
      coho_size[0] = 1;
-     names[0] = (MP_INT *) malloc(sizeof(MP_INT));
+     names[0] = (mpz_t *) malloc(sizeof(mpz_t));
      mpz_init_set_si(names[0], 0);
   }
   else {
@@ -345,7 +345,7 @@ int number_of_affine_class(Q_data_TYP *data,
 {
    matrix_TYP *rep;
 
-   MP_INT nummer;
+   mpz_t nummer;
 
    int anz, n, first, last, zahl, pos;
 

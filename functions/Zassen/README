@@ -8,7 +8,7 @@
 @
 @----------------------------------------------------------------------------
 @
-@ static matrix_TYP *reverse_valuation(MP_INT *val,matrix_TYP *D)
+@ static matrix_TYP *reverse_valuation(mpz_t *val,matrix_TYP *D)
 @
 @ The value of val will not be changed !
 @----------------------------------------------------------------------------
@@ -17,7 +17,7 @@
 @ -------------------------------------------------------------------------
 @
 @ matrix_TYP *orbit_rep(matrix_TYP *x,matrix_TYP **N,int nanz,matrix_TYP *D,
-@                       int option,char *B,MP_INT *l,int *anz,
+@                       int option,char *B,mpz_t *l,int *anz,
 @                       int **word,int word_flag)
 @
 @
@@ -75,7 +75,7 @@
 @--------------------------------------------------------------------------
 @
 @ matrix_TYP **identify(matrix_TYP *cocycle,matrix_TYP *D,matrix_TYP *R,
-@                       bravais_TYP *G,matrix_TYP **extension,MP_INT *a,
+@                       bravais_TYP *G,matrix_TYP **extension,mpz_t *a,
 @                       int number,int transform_flag)
 @
 @ Identifies the space groups described by the cocycles in extension,
@@ -85,7 +85,7 @@
 @ the normalizer of the point group which transforms each given extension
 @ into it's least representative. This is usefull to calculate the
 @ isomorphism between two extensions which get the same name.
-@ NOTE: the name given to an extension is 0 (interpreted as MP_INT) iff
+@ NOTE: the name given to an extension is 0 (interpreted as mpz_t) iff
 @       the extension splits.
 @
 @   matrix_TYP *cozykle:   1st matrix returned by cohomolgy for G.
@@ -114,7 +114,7 @@
 @ -------------------------------------------------------------------------
 @
 @ matrix_TYP **extensions(matrix_TYP *cocycle,matrix_TYP *D,matrix_TYP *R,
-@             bravais_TYP *G,int **lengths,MP_INT **names,int *number_of_orbits)
+@             bravais_TYP *G,int **lengths,mpz_t **names,int *number_of_orbits)
 @
 @ Returns the cocycles which generate the isomorphims classes of
 @ extensions of G by the natural ZG-module. The split extension is
@@ -127,7 +127,7 @@
 @   bravais_TYP *G:        the group in question.
 @   int **lengths:         length[0] returns a pointer to the lengths
 @                          of the orbits respectively
-@   MP_INT **names:        names[0] returns a pointer to the names of
+@   mpz_t **names:        names[0] returns a pointer to the names of
 @                          the cocycles as they would appear in a call
 @                          of identify(.....).
 @   int *number_of_orbits: the number of orbits the normalizer induces
@@ -137,7 +137,7 @@
 @
 @----------------------------------------------------------------------------
 @
-@ static void no_of_fixpoints(MP_INT *res,matrix_TYP *A,matrix_TYP *D)
+@ static void no_of_fixpoints(mpz_t *res,matrix_TYP *A,matrix_TYP *D)
 @
 @
 @ CAUTION: A->array.SZ, A->cols WILL BE CHANGED!!!!
@@ -147,7 +147,7 @@
 @------------------------------------------------------------------------
 @
 @ void no_of_extensions(matrix_TYP *cocycle,matrix_TYP *D,
-@                        matrix_TYP *R,bravais_TYP *G,MP_INT *erg)
+@                        matrix_TYP *R,bravais_TYP *G,mpz_t *erg)
 @
 @------------------------------------------------------------------------
 @

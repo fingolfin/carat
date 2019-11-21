@@ -333,7 +333,7 @@ bravais_TYP ****t_subgroups(bravais_TYP *G,
    matrix_TYP **G_geninv, **coz, **X, **trash, **G_norminv, ***stab,
               **conj, **Rinv, *inv, *cocycle;
 
-   MP_INT *names;
+   mpz_t *names;
 
 
    /* deal with trivial case */

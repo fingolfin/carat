@@ -28,7 +28,7 @@ typedef struct {
    matrix_TYP ***X;			/* matrices with informations about affine classes */
    matrix_TYP **X_2_inv;		/* inverse of ...->X[i][2] for each Z-class i */
    matrix_TYP ***coz;                   /* cocycles of the affine classes */
-   MP_INT **names;			/* names for affine classes */
+   mpz_t **names;			/* names for affine classes */
    int **names_int;			/* names for affine classes in integers */
    int *coho_size;			/* size of the cohomology group for each Z-class */
    int all;				/* total number of affine classes */
@@ -78,9 +78,9 @@ typedef struct
    matrix_TYP *coz;		/* cocycle in Q^n */
    matrix_TYP *std_coz;		/* standard form for this cocycle */
    matrix_TYP *diff;		/* coz - std_coz */
-   MP_INT name;			/* name for this cocycle (number of element with lowest
+   mpz_t name;			/* name for this cocycle (number of element with lowest
                                    number in the orbit) */
-   MP_INT number;		/* number for this cocycle */
+   mpz_t number;		/* number for this cocycle */
    int **WORDS;			/* Words for stabilizer of cocycle */
    int WORDS_no;		/* number of words for stabilizer of cocycle */
    matrix_TYP **Stab;		/* Stablizer of the cocycle / Pointgroup !!! */
@@ -117,12 +117,12 @@ matrix_TYP **extensions_o(matrix_TYP *cocycle,
                           matrix_TYP *R,
                           bravais_TYP *G,
                           int **lengths,
-                          MP_INT **names,
+                          mpz_t **names,
                           int *number_of_orbits,
                           int ****WORDS,
                           int **NUMBER_OF_WORDS,
                           matrix_TYP ***N,
-                          MP_INT coho_size,
+                          mpz_t coho_size,
                           int option,
                           int *list_of_names);
 
@@ -131,7 +131,7 @@ matrix_TYP **all_cocycles(matrix_TYP *relator_input,
                           int *anzahl,
                           matrix_TYP **matinv,
                           matrix_TYP ***X,
-                          MP_INT **names,
+                          mpz_t **names,
                           int ****WORDS,
                           int **NUMBER_OF_WORDS,
                           matrix_TYP ***N,
@@ -157,9 +157,9 @@ matrix_TYP *standard_rep(matrix_TYP *coz,
                          matrix_TYP *GLS,
                          matrix_TYP *D);
 
-MP_INT cohomology_size(matrix_TYP *D);
+mpz_t cohomology_size(matrix_TYP *D);
 
-int *aff_classes_in_image(MP_INT *names,
+int *aff_classes_in_image(mpz_t *names,
                           int aff_no,
                           int coho_size,
                           matrix_TYP **orbit,

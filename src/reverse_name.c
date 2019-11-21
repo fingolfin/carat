@@ -26,7 +26,7 @@ int main (int argc, char *argv[])
   int zname[2],
     i;
 
-  MP_INT aff_name;
+  mpz_t aff_name;
 
   char comment[2048];
 

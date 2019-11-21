@@ -14,7 +14,7 @@
 /************************************************************************\
 @-------------------------------------------------------------------------
 @ int MP_trf_gauss(M, Trf, rows, cols)
-@ MP_INT **M, **Trf;
+@ mpz_t **M, **Trf;
 @ int rows, cols;
 @ The Matrix M is transformed to a matrix M such that
 @ M_new = Trf * M_old is Gauss-reduced, with Trf integral with
@@ -24,16 +24,16 @@
 \************************************************************************/
 
 int 
-MP_trf_gauss (MP_INT **M, MP_INT **Trf, int rows, int cols)
+MP_trf_gauss (mpz_t **M, mpz_t **Trf, int rows, int cols)
 {
   int i,j;
   int n;
   int step;
-  MP_INT a1,a2,gcd, *v, f;
+  mpz_t a1,a2,gcd, *v, f;
   int tester;
   int spos = 0;
-  MP_INT x1,x2,y1,y2;
-  MP_INT Mi, Ms;
+  mpz_t x1,x2,y1,y2;
+  mpz_t Mi, Ms;
 
   n = rows;
   mpz_init(&f); mpz_init(&a1); mpz_init(&a2); mpz_init(&gcd);
@@ -142,7 +142,7 @@ MP_trf_gauss (MP_INT **M, MP_INT **Trf, int rows, int cols)
 /**************************************************************************\
 @---------------------------------------------------------------------------
 @ int MP_row_gauss(M, rows, cols)
-@ MP_INT **M;
+@ mpz_t **M;
 @ int rows, cols;
 @
 @ The same as MP_trf_gauss without calulating the transformation
@@ -152,16 +152,16 @@ MP_trf_gauss (MP_INT **M, MP_INT **Trf, int rows, int cols)
 \**************************************************************************/
 
 int 
-MP_row_gauss (MP_INT **M, int rows, int cols)
+MP_row_gauss (mpz_t **M, int rows, int cols)
 {
   int i,j;
   int n;
   int step;
-  MP_INT a1,a2,gcd, *v, f;
+  mpz_t a1,a2,gcd, *v, f;
   int tester;
   int spos = 0;
-  MP_INT x1,x2,y1,y2;
-  MP_INT Mi, Ms;
+  mpz_t x1,x2,y1,y2;
+  mpz_t Mi, Ms;
 
   n = rows;
   mpz_init(&f); mpz_init(&a1); mpz_init(&a2); mpz_init(&gcd);
@@ -244,7 +244,7 @@ MP_row_gauss (MP_INT **M, int rows, int cols)
 /**************************************************************************\
 @---------------------------------------------------------------------------
 @ int MP_row_gauss_simultaneous(M, rows, cols, B, Bcols)
-@ MP_INT **M, **B;
+@ mpz_t **M, **B;
 @ int rows, cols, Bcols;
 @
 @ applies an integral gaussian algorithm (on the rows) to to 2-dimensional
@@ -253,16 +253,16 @@ MP_row_gauss (MP_INT **M, int rows, int cols)
 @
 \**************************************************************************/
 int 
-MP_row_gauss_simultaneous (MP_INT **M, int rows, int cols, MP_INT **B, int Bcols)
+MP_row_gauss_simultaneous (mpz_t **M, int rows, int cols, mpz_t **B, int Bcols)
 {
   int i,j;
   int n;
   int step;
-  MP_INT a1,a2,gcd, *v, f;
+  mpz_t a1,a2,gcd, *v, f;
   int tester;
   int spos = 0;
-  MP_INT x1,x2,y1,y2;
-  MP_INT Mi, Ms;
+  mpz_t x1,x2,y1,y2;
+  mpz_t Mi, Ms;
 
   n = rows;
   mpz_init(&f); mpz_init(&a1); mpz_init(&a2); mpz_init(&gcd);
@@ -367,13 +367,13 @@ MP_row_gauss_simultaneous (MP_INT **M, int rows, int cols, MP_INT **B, int Bcols
 @
 @------------------------------------------------------------------------
 @
-@ void MP_row_gauss_reverse(MP_INT **A,int rows,int cols,int option)
+@ void MP_row_gauss_reverse(mpz_t **A,int rows,int cols,int option)
 @
-@ Performs a manhattan style gauss algorithm on the MP_INT matrix
+@ Performs a manhattan style gauss algorithm on the mpz_t matrix
 @ M, which has to be gauss reduced by MP_row_gauss before.
 @ The algorithm is not done complete for sake of speed!
 @
-@ MP_INT **A   : The matrix in question. It will be changed!
+@ mpz_t **A   : The matrix in question. It will be changed!
 @ int rows     : the rows of A. It is suffisient to feed the rank in here.
 @ int cols     : the number of columns of A.
 @ int option   : this flag determines the behaviour of the function:
@@ -383,14 +383,14 @@ MP_row_gauss_simultaneous (MP_INT **M, int rows, int cols, MP_INT **B, int Bcols
 @------------------------------------------------------------------------
 @
 *************************************************************************/
-void MP_row_gauss_reverse(MP_INT **A,int rows,int cols,int option)
+void MP_row_gauss_reverse(mpz_t **A,int rows,int cols,int option)
 {
    int i,
        j,
        k,
        actcol;
 
-   MP_INT x,
+   mpz_t x,
           y;
 
    mpz_init(&x);

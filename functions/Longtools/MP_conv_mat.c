@@ -16,29 +16,29 @@
 
 /**************************************************************************\
 @---------------------------------------------------------------------------
-@ MP_INT **matrix_to_MP_mat(M)
+@ mpz_t **matrix_to_MP_mat(M)
 @ matrix_TYP *M;
 @
-@  allocated an 2-dimensional array of MP_INT of the size
+@  allocated an 2-dimensional array of mpz_t of the size
 @  Mat->rows x Mat->cols,
 @  converts the entries of Mat->array.SZ to MP_INt and writes 
 @  them into the array.
 @---------------------------------------------------------------------------
 @
 \**************************************************************************/
-MP_INT **
+mpz_t **
 matrix_to_MP_mat (matrix_TYP *M)
 {
   int i,j,m,n;
-  MP_INT **erg;
+  mpz_t **erg;
 
   m = M->cols;
   n = M->rows;
   
-  erg = (MP_INT **) xmalloc(n *sizeof(MP_INT *));
+  erg = (mpz_t **) xmalloc(n *sizeof(mpz_t *));
   for(i=0;i<n;i++)
   {
-    erg[i] = (MP_INT *) xmalloc(m *sizeof(MP_INT));
+    erg[i] = (mpz_t *) xmalloc(m *sizeof(mpz_t));
   }
   for(i=0;i<n;i++)
     for(j=0;j<m;j++)
@@ -50,16 +50,16 @@ matrix_to_MP_mat (matrix_TYP *M)
 /**************************************************************************\
 @---------------------------------------------------------------------------
 @ matrix_TYP *MP_mat_to_matrix(M, rows, cols)
-@ MP_INT **M;
+@ mpz_t **M;
 @ int rows, cols;
 @
-@ converts the 2-dimensional array M of MP_INT to a matrix_TYP.
+@ converts the 2-dimensional array M of mpz_t to a matrix_TYP.
 @ if the entries in M are to big, the function exits with an error message.
 @---------------------------------------------------------------------------
 @
 \**************************************************************************/
 matrix_TYP *
-MP_mat_to_matrix (MP_INT **M, int rows, int cols)
+MP_mat_to_matrix (mpz_t **M, int rows, int cols)
 {
   int i,j;
   matrix_TYP *erg;
@@ -87,7 +87,7 @@ MP_mat_to_matrix (MP_INT **M, int rows, int cols)
 @---------------------------------------------------------------------------
 @ void write_MP_mat_to_matrix(Mat, mp)
 @ matrix_TYP *Mat;
-@ MP_INT **mp;
+@ mpz_t **mp;
 @
 @ converts the entries of 'mp' and write them to mat->array.SZ
 @ If the entries are to big, the programm exits
@@ -95,7 +95,7 @@ MP_mat_to_matrix (MP_INT **M, int rows, int cols)
 @
 \**************************************************************************/
 void 
-write_MP_mat_to_matrix (matrix_TYP *Mat, MP_INT **mp)
+write_MP_mat_to_matrix (matrix_TYP *Mat, mpz_t **mp)
 {
   int i,j;
 
@@ -114,24 +114,24 @@ write_MP_mat_to_matrix (matrix_TYP *Mat, MP_INT **mp)
 
 /**************************************************************************\
 @---------------------------------------------------------------------------
-@ MP_INT **init_MP_mat(rows, cols)
+@ mpz_t **init_MP_mat(rows, cols)
 @ int rows, cols;
 @
-@ intitializes a 2-dimensional array of MP_INT of size rows x cols
+@ intitializes a 2-dimensional array of mpz_t of size rows x cols
 @ and sets all entries 0.
 @---------------------------------------------------------------------------
 @
 \**************************************************************************/
-MP_INT **
+mpz_t **
 init_MP_mat (int rows, int cols)
 {
-   MP_INT **E;
+   mpz_t **E;
    int i,j;
 
-   E = (MP_INT **)xmalloc(rows *sizeof(MP_INT *));
+   E = (mpz_t **)xmalloc(rows *sizeof(mpz_t *));
    for(i=0;i<rows;i++)
    {
-     E[i] = (MP_INT *)xmalloc(cols *sizeof(MP_INT));
+     E[i] = (mpz_t *)xmalloc(cols *sizeof(mpz_t));
      for(j=0;j<cols;j++)
         mpz_init(&E[i][j]);
    }
@@ -143,7 +143,7 @@ init_MP_mat (int rows, int cols)
 /**************************************************************************\
 @---------------------------------------------------------------------------
 @ void free_MP_mat(M, rows, cols)
-@ MP_INT **M;
+@ mpz_t **M;
 @ int rows, cols;
 @
 @ Clears the entries in the 2-dimensional array 'M' and frees
@@ -152,7 +152,7 @@ init_MP_mat (int rows, int cols)
 @
 \**************************************************************************/
 void 
-free_MP_mat (MP_INT **M, int rows, int cols)
+free_MP_mat (mpz_t **M, int rows, int cols)
 {
  int i,j;
  for(i=0;i<rows;i++)

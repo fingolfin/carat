@@ -14,11 +14,11 @@
 
 
 static void 
-MP_two_reduce (MP_INT **G, MP_INT **T, int i, int j, int n)
+MP_two_reduce (mpz_t **G, mpz_t **T, int i, int j, int n)
 {
    int k;
-   MP_INT f, f1, f2;
-   MP_INT zwei;
+   mpz_t f, f1, f2;
+   mpz_t zwei;
   
    mpz_init(&f);
    mpz_init(&f1);
@@ -64,7 +64,7 @@ MP_two_reduce (MP_INT **G, MP_INT **T, int i, int j, int n)
 /**************************************************************************\
 @---------------------------------------------------------------------------
 @ void MP_pair_red(G, T, n)
-@ MP_INT **G, **T;
+@ mpz_t **G, **T;
 @ int   n;
 @
 @  Applies a pair reduction to the positive definite n x n - matrix G
@@ -76,11 +76,11 @@ MP_two_reduce (MP_INT **G, MP_INT **T, int i, int j, int n)
 @
 \**************************************************************************/
 void 
-MP_pair_red (MP_INT **G, MP_INT **T, int n)
+MP_pair_red (mpz_t **G, mpz_t **T, int n)
 {
    int i,j,k, p1, p2;
    int reduced, red2;
-   MP_INT merk, s, a, zwei;
+   mpz_t merk, s, a, zwei;
 
    mpz_init(&merk);
    mpz_init(&s);

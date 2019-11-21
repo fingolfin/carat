@@ -31,13 +31,13 @@ static void mod(int *a,int b)
    if (a[0]<0) a[0] += b;
 }
 
-static void valuation_here(matrix_TYP *x,matrix_TYP *D,MP_INT *val)
+static void valuation_here(matrix_TYP *x,matrix_TYP *D,mpz_t *val)
 {
    int first,
        last,
        i;
 
-   MP_INT prod,
+   mpz_t prod,
           tmp;
 
    mpz_init_set_si(&prod,1);
@@ -61,7 +61,7 @@ static void valuation_here(matrix_TYP *x,matrix_TYP *D,MP_INT *val)
    return;
 } /* valuation(.....) */
 
-static int hash(struct tree *p,MP_INT *valuations,MP_INT *new_val,int pos)
+static int hash(struct tree *p,mpz_t *valuations,mpz_t *new_val,int pos)
 {
 
    int cmp;
@@ -128,7 +128,7 @@ static int smallest(struct tree *p)
 @                       matrix_TYP *D,
 @                       int option,
 @                       char *B,
-@                       MP_INT *l,
+@                       mpz_t *l,
 @                       int *anz,
 @                       int **word,
 @                       int word_flag,
@@ -169,7 +169,7 @@ static matrix_TYP *static_orbit_rep(matrix_TYP *x,
                              matrix_TYP *D,
                              int option,
                              char *B,
-                             MP_INT *l,
+                             mpz_t *l,
                              int *anz,
                              int **word,
                              int word_flag,
@@ -185,7 +185,7 @@ static matrix_TYP *static_orbit_rep(matrix_TYP *x,
      **orb_words,
        speicher;      /* the number of allocated memory for valuations
                           and orbit, and orb_words */
-   MP_INT *valuations,
+   mpz_t *valuations,
            new_val;        /* the valuation of the newly calculated vector */
 
    matrix_TYP *erg,
@@ -201,7 +201,7 @@ static matrix_TYP *static_orbit_rep(matrix_TYP *x,
    /* get memory */
    p = (struct tree *) calloc(1,sizeof(struct tree));
    speicher = MIN_SPEICHER;
-   valuations = (MP_INT *) malloc(speicher * sizeof(MP_INT));
+   valuations = (mpz_t *) malloc(speicher * sizeof(mpz_t));
    for (i=0;i<speicher;i++) mpz_init(&valuations[i]);
    mpz_init(&new_val);
    orbit = (matrix_TYP **) malloc(speicher * sizeof(matrix_TYP*));
@@ -264,8 +264,8 @@ static matrix_TYP *static_orbit_rep(matrix_TYP *x,
             /* get more memory is nessesary */
             if (anz[0] >= speicher){
                speicher += MIN_SPEICHER;
-               valuations = (MP_INT *) realloc(valuations,
-                                       speicher * sizeof(MP_INT));
+               valuations = (mpz_t *) realloc(valuations,
+                                       speicher * sizeof(mpz_t));
                for (k=anz[0];k<speicher;k++) mpz_init(&valuations[k]);
                orbit = (matrix_TYP **) realloc(orbit,
                                     speicher * sizeof(matrix_TYP *));
@@ -392,7 +392,7 @@ static int gives_rise_to_torsionfree_space_group(
 @                         matrix_TYP *R,
 @                         bravais_TYP *G,
 @                         int **lengths,
-@                         MP_INT **names,
+@                         mpz_t **names,
 @                         int *number_of_orbits,
 @                         int option)
 @
@@ -407,12 +407,12 @@ static int gives_rise_to_torsionfree_space_group(
 @   bravais_TYP *G:        the group in question.
 @   int **lengths:         length[0] returns a pointer to the lengths
 @                          of the orbits respectively
-@   MP_INT **names:        names[0] returns a pointer to the names of
+@   mpz_t **names:        names[0] returns a pointer to the names of
 @                          the cocycles as they would appear in a call
 @                          of identify(.....).
 @   int *number_of_orbits: the number of orbits the normalizer induces
 @                          on the cohomology group.
-@   MP_INT coho_size:      order of the cohomology group
+@   mpz_t coho_size:      order of the cohomology group
 @   int option:            controls the behaviour of the function:
 @                          option & 1: construct only torsion free extensions
 @   int *list_of_names:    if list_of_names != NULL save of each cocycle the number of the
@@ -425,12 +425,12 @@ matrix_TYP **extensions_o(matrix_TYP *cocycle,
                           matrix_TYP *R,
                           bravais_TYP *G,
                           int **lengths,
-                          MP_INT **names,
+                          mpz_t **names,
                           int *number_of_orbits,
                           int ****WORDS,
                           int **NUMBER_OF_WORDS,
                           matrix_TYP ***N,
-                          MP_INT coho_size,
+                          mpz_t coho_size,
                           int option,
                           int *list_of_names)
 {
@@ -440,7 +440,7 @@ matrix_TYP **extensions_o(matrix_TYP *cocycle,
 
   char *tested;
 
-  MP_INT act_val,
+  mpz_t act_val,
          new_val,
          got_size;
 
@@ -462,7 +462,7 @@ matrix_TYP **extensions_o(matrix_TYP *cocycle,
 
   erg = (matrix_TYP **) malloc(sizeof(matrix_TYP *));
   lengths[0] = (int *) malloc(sizeof(int));
-  names[0] = (MP_INT *) malloc(sizeof(MP_INT));
+  names[0] = (mpz_t *) malloc(sizeof(mpz_t));
   N[0] = (matrix_TYP **)calloc(Nanz, sizeof(matrix_TYP *));
 
   if (list_of_names != NULL){
@@ -541,8 +541,8 @@ matrix_TYP **extensions_o(matrix_TYP *cocycle,
                      (number_of_orbits[0] + MIN_SPEICHER)*sizeof(matrix_TYP*));
              lengths[0] = (int *) realloc(lengths[0],
                      (number_of_orbits[0] + MIN_SPEICHER)*sizeof(int));
-             names[0] = (MP_INT *) realloc(names[0],
-                     (number_of_orbits[0] + MIN_SPEICHER)*sizeof(MP_INT));
+             names[0] = (mpz_t *) realloc(names[0],
+                     (number_of_orbits[0] + MIN_SPEICHER)*sizeof(mpz_t));
              WORDS[0] = (int ***)realloc(WORDS[0],
                      (number_of_orbits[0] + MIN_SPEICHER)*sizeof(int **));
              NUMBER_OF_WORDS[0] = (int *)realloc(NUMBER_OF_WORDS[0],

@@ -32,7 +32,7 @@ int main (int argc, char *argv[])
 
   database *database;
 
-  MP_INT aff_name;
+  mpz_t aff_name;
 
   char qname[1024],
        symb[1024];

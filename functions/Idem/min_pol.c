@@ -41,7 +41,7 @@ matrix_TYP *min_pol(matrix_TYP *A)
    matrix_TYP **potenzen,
                *erg;        /* will hold the result */
 
-   MP_INT  **lines,
+   mpz_t  **lines,
            **trf,
              kgv;
 

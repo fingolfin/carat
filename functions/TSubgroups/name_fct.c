@@ -37,7 +37,7 @@ CARATname_TYP name_fct(bravais_TYP *R,
              *TZ,
              *PRES;
 
-  //MP_INT aff_name;
+  //mpz_t aff_name;
 
   char symb[1024];
 

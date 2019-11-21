@@ -17,7 +17,7 @@ typedef struct{
 typedef struct{
    char qname[1024];	/* name of the Q-class */
    int zname[2];	/* name of the Z-class */
-   MP_INT aff_name;	/* name of the affine class */
+   mpz_t aff_name;	/* name of the affine class */
    matrix_TYP *trafo;	/* transformation matrix, conjugating the given group in CARAT rep. */
    int order;		/* order of the point group */
 } CARATname_TYP;

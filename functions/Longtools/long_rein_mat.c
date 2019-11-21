@@ -30,9 +30,9 @@ long_rein_mat (matrix_TYP *Mat)
 
    int i,j,k, step, stepclear;
    int cols, rows, rang;
-   MP_INT **trf, **M, **Mt, **M1, **M2, **M3, **M4, **T1, *merkpointer;
+   mpz_t **trf, **M, **Mt, **M1, **M2, **M3, **M4, **T1, *merkpointer;
    matrix_TYP *erg;
-   MP_INT a1, a2, x1, x2, y1, y2, merk, g, f;
+   mpz_t a1, a2, x1, x2, y1, y2, merk, g, f;
  
    cols = Mat->cols;
    rows = Mat->rows;
@@ -44,10 +44,10 @@ long_rein_mat (matrix_TYP *Mat)
    /***************************************************************\
    | Set Mt= Mat^{tr} transform Mt to Hermite normal form.
    \***************************************************************/
-   Mt = (MP_INT **)xmalloc(cols *sizeof(MP_INT *));
+   Mt = (mpz_t **)xmalloc(cols *sizeof(mpz_t *));
    for(i=0;i<cols;i++)
    {
-     Mt[i] = (MP_INT *)xmalloc(rows *sizeof(MP_INT));
+     Mt[i] = (mpz_t *)xmalloc(rows *sizeof(mpz_t));
      for(j=0;j<rows;j++)
        mpz_init_set_si(&Mt[i][j], Mat->array.SZ[j][i]);
    }
@@ -56,10 +56,10 @@ long_rein_mat (matrix_TYP *Mat)
    /***************************************************************\
    | Set trf =  left_tans
    \***************************************************************/
-     trf = (MP_INT **)xmalloc(rows *sizeof(MP_INT *));
+     trf = (mpz_t **)xmalloc(rows *sizeof(mpz_t *));
      for(i=0;i<rows;i++)
      {
-       trf[i] = (MP_INT *)xmalloc(rows *sizeof(MP_INT));
+       trf[i] = (mpz_t *)xmalloc(rows *sizeof(mpz_t));
        for(j=0;j<rows;j++)
          mpz_init_set_si(&trf[i][j], 0);
        mpz_set_si(&trf[i][i], 1);
@@ -67,10 +67,10 @@ long_rein_mat (matrix_TYP *Mat)
    /***************************************************************\
    | Set M= Mt^{tr} transform Mt to Hermite normal form.
    \***************************************************************/
-   M = (MP_INT **)xmalloc(rows *sizeof(MP_INT *));
+   M = (mpz_t **)xmalloc(rows *sizeof(mpz_t *));
    for(i=0;i<rows;i++)
    {
-     M[i] = (MP_INT *)xmalloc(cols *sizeof(MP_INT));
+     M[i] = (mpz_t *)xmalloc(cols *sizeof(mpz_t));
      for(j=0;j<cols;j++)
        mpz_init_set(&M[i][j], &Mt[j][i]);
    }
@@ -319,10 +319,10 @@ long_rein_mat (matrix_TYP *Mat)
    |  Multiply trf with Mat
    \*-------------------------------------------------------------------*/
    M1 = matrix_to_MP_mat(Mat);
-   M2 = (MP_INT **)xmalloc(rang *sizeof(MP_INT *));
+   M2 = (mpz_t **)xmalloc(rang *sizeof(mpz_t *));
    for(i=0;i<rang;i++)
    {
-     M2[i] = (MP_INT *)xmalloc(cols *sizeof(MP_INT));
+     M2[i] = (mpz_t *)xmalloc(cols *sizeof(mpz_t));
      for(j=0;j<cols;j++)
         mpz_init(&M2[i][j]);
    }

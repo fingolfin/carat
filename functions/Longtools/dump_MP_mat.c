@@ -26,7 +26,7 @@
 @
 \**************************************************************************/
 void 
-dump_MP_mat (MP_INT **Mat, int rows, int cols, char *comment)
+dump_MP_mat (mpz_t **Mat, int rows, int cols, char *comment)
 
 {
 

@@ -19,7 +19,7 @@
 /**************************************************************************\
 @---------------------------------------------------------------------------
 @ int MP_trf_hnf(M, Trf, rows, cols)
-@ MP_INT **M, **Trf;
+@ mpz_t **M, **Trf;
 @ int rows, cols;
 @
 @---------------------------------------------------------------------------
@@ -31,16 +31,16 @@
 \************************************************************************/
 
 int 
-MP_trf_hnf (MP_INT **M, MP_INT **Trf, int rows, int cols)
+MP_trf_hnf (mpz_t **M, mpz_t **Trf, int rows, int cols)
 {
   int i,j;
   int n;
   int step;
-  MP_INT a1,a2,gcd, *v, f;
+  mpz_t a1,a2,gcd, *v, f;
   int tester;
   int spos = 0;
-  MP_INT x1,x2,y1,y2;
-  MP_INT Mi, Ms;
+  mpz_t x1,x2,y1,y2;
+  mpz_t Mi, Ms;
   int rang = 0;
 
   n = rows;
@@ -206,22 +206,22 @@ MP_trf_hnf (MP_INT **M, MP_INT **Trf, int rows, int cols)
 /**************************************************************************\
 @---------------------------------------------------------------------------
 @ int MP_hnf(M, rows, cols)
-@ MP_INT **M;
+@ mpz_t **M;
 @ int rows, cols;
 @---------------------------------------------------------------------------
 @
 \**************************************************************************/
 int 
-MP_hnf (MP_INT **M, int rows, int cols)
+MP_hnf (mpz_t **M, int rows, int cols)
 {
   int i,j;
   int n;
   int step;
-  MP_INT a1,a2,gcd, *v, f;
+  mpz_t a1,a2,gcd, *v, f;
   int tester;
   int spos = 0;
-  MP_INT x1,x2,y1,y2;
-  MP_INT Mi, Ms;
+  mpz_t x1,x2,y1,y2;
+  mpz_t Mi, Ms;
   int rang = 0;
 
   n = rows;
@@ -368,22 +368,22 @@ MP_hnf (MP_INT **M, int rows, int cols)
 /**************************************************************************\
 @---------------------------------------------------------------------------
 @ int MP_hnf_simultaneous(M, rows, cols, B, Bcols)
-@ MP_INT **M, **B;
+@ mpz_t **M, **B;
 @ int rows, cols, Bcols;
 @
 @---------------------------------------------------------------------------
 \**************************************************************************/
 int 
-MP_hnf_simultaneous (MP_INT **M, int rows, int cols, MP_INT **B, int Bcols)
+MP_hnf_simultaneous (mpz_t **M, int rows, int cols, mpz_t **B, int Bcols)
 {
   int i,j;
   int n;
   int step;
-  MP_INT a1,a2,gcd, *v, f;
+  mpz_t a1,a2,gcd, *v, f;
   int tester;
   int spos = 0;
-  MP_INT x1,x2,y1,y2;
-  MP_INT Mi, Ms;
+  mpz_t x1,x2,y1,y2;
+  mpz_t Mi, Ms;
   int rang = 0;
 
   n = rows;

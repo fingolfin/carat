@@ -38,6 +38,6 @@ matrix_TYP *conjugated(bravais_TYP *G,bravais_TYP *H,
 @ FILE: base2.c
 **************************************************************************/
 int strong_generators_2(matrix_TYP **base,bravais_TYP *U,matrix_TYP ***K,
-                        int *anz,MP_INT *mp);
+                        int *anz,mpz_t *mp);
 
 #endif

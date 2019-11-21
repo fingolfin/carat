@@ -68,19 +68,19 @@ extern matrix_TYP **extensions(matrix_TYP *cocycle,
                                matrix_TYP *R,
                                bravais_TYP *G,
                                int **lengths,
-                               MP_INT **names,
+                               mpz_t **names,
                                int *number_of_orbits,
                                int option);
 
 extern void no_of_extensions(matrix_TYP *cocycle,matrix_TYP *D,
-                        matrix_TYP *R,bravais_TYP *G,MP_INT *no);
+                        matrix_TYP *R,bravais_TYP *G,mpz_t *no);
 
 extern matrix_TYP **identify(matrix_TYP *cocycle,
                              matrix_TYP *D,
                              matrix_TYP *R,
                              bravais_TYP *G,
                              matrix_TYP **extension,
-                             MP_INT *a,int number,
+                             mpz_t *a,int number,
                              int transform_flag,
                              int ***WORDS,
                              int *NUMBER_OF_WORDS);
@@ -92,7 +92,7 @@ extern void translation(matrix_TYP *TR,
                         matrix_TYP *D,
                         bravais_TYP *G);
 
-extern void valuation(matrix_TYP *x,matrix_TYP *D,MP_INT *val);
+extern void valuation(matrix_TYP *x,matrix_TYP *D,mpz_t *val);
 
 extern matrix_TYP *orbit_rep(matrix_TYP *x,
                              matrix_TYP **N,
@@ -100,7 +100,7 @@ extern matrix_TYP *orbit_rep(matrix_TYP *x,
                              matrix_TYP *D,
                              int option,
                              char *B,
-                             MP_INT *l,
+                             mpz_t *l,
                              int *anz,
                              int **word,
                              int word_flag,
@@ -111,7 +111,7 @@ extern matrix_TYP *orbit_rep(matrix_TYP *x,
 | FILE: reverse_valuation.c
 \**********************************************************************/
 
-extern matrix_TYP *reverse_valuation(MP_INT *val,matrix_TYP *D);
+extern matrix_TYP *reverse_valuation(mpz_t *val,matrix_TYP *D);
 
 /**********************************************************************\
 | FILE: reget_gen.c

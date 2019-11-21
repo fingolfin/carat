@@ -204,7 +204,7 @@ coz_TYP identify_coz(bravais_TYP *G,
 
    rational eins, minuseins;
 
-   MP_INT null;
+   mpz_t null;
 
    int i, zen_no;
 
@@ -346,7 +346,7 @@ static matrix_TYP *cocycle_in_image(matrix_TYP *coz_darst,
        anz, size = MYSIZE,
        *number;
 
-   MP_INT val;
+   mpz_t val;
 
 
 
@@ -601,7 +601,7 @@ static void korrektes_urbild(matrix_TYP **preimage,
 
    boolean found;
 
-   MP_INT val;
+   mpz_t val;
 
 
 
@@ -764,7 +764,7 @@ static matrix_TYP **calculate_all_preimages(matrix_TYP *preimage,
        *number,
        first, last, diff;
 
-   MP_INT val;
+   mpz_t val;
 
    rational eins;
 

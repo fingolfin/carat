@@ -29,7 +29,7 @@ int
 long_row_gauss (matrix_TYP *Mat)
 {
   int rang;
-  MP_INT **M;
+  mpz_t **M;
  
   M = matrix_to_MP_mat(Mat);
   rang = MP_row_gauss(M, Mat->rows, Mat->cols);
@@ -62,7 +62,7 @@ long_row_basis (matrix_TYP *Mat, int flag)
       j,
       k;
 
-  MP_INT   merk,
+  mpz_t   merk,
          **M,
          **M3,
          **M4,
@@ -159,7 +159,7 @@ int
 long_row_trf_gauss (matrix_TYP *M, matrix_TYP *T)
 {
   int rang;
-  MP_INT **N, **S;
+  mpz_t **N, **S;
 
   N = matrix_to_MP_mat(M);
   S = init_MP_mat(M->rows, M->rows);
@@ -189,7 +189,7 @@ int
 long_row_gauss_simultaneous (matrix_TYP *A, matrix_TYP *B)
 {
   int rang;
-  MP_INT **MA, **MB;
+  mpz_t **MA, **MB;
 
   MA = matrix_to_MP_mat(A);
   MB = matrix_to_MP_mat(B);

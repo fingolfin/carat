@@ -61,7 +61,7 @@ static int min(int a,
 /* D: the second return value of cohomology                                    */
 /* anz: save the number of affine classes in the image here                    */
 /* --------------------------------------------------------------------------- */
-int *aff_classes_in_image(MP_INT *names,
+int *aff_classes_in_image(mpz_t *names,
                           int aff_no,
                           int coho_size,
                           matrix_TYP **orbit,
@@ -76,7 +76,7 @@ int *aff_classes_in_image(MP_INT *names,
 
    matrix_TYP *tmp;
 
-   MP_INT val;
+   mpz_t val;
 
 
    mpz_init(&val);
@@ -173,7 +173,7 @@ int *aufspannen(int coho_size,
 
    matrix_TYP *tmp;
 
-   MP_INT val;
+   mpz_t val;
 
 
    mpz_init(&val);
@@ -383,7 +383,7 @@ matrix_TYP ***H1_mod_ker_orbit_alg(H1_mod_ker_TYP H1_mod_ker,
        *list, *smallest, **words,
        coho_size, erz_no, counter = 0;
 
-   MP_INT val, cohom_size, MP_i;
+   mpz_t val, cohom_size, MP_i;
 
 
    mpz_init(&val);
@@ -600,7 +600,7 @@ matrix_TYP **orbit_ker(matrix_TYP **ker_elements,
    matrix_TYP **orbit_rep,
                *tmp;
 
-   MP_INT val;
+   mpz_t val;
 
 
    for (first = 0; first < D->cols && D->array.SZ[first][first] == 1; first++);
@@ -733,7 +733,7 @@ matrix_TYP **orbit_ksi_plus_ker(matrix_TYP *ksi,
 
    rational eins, minuseins;
 
-   MP_INT val;
+   mpz_t val;
 
 
 

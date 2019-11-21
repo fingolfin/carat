@@ -15,7 +15,7 @@ int main(int argc,char **argv){
   matrix_TYP **base,
              **K;
 
-  MP_INT Order;
+  mpz_t Order;
 
   int i,
       siz,

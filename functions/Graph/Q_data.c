@@ -50,7 +50,7 @@ Q_data_TYP *get_Q_data(bravais_TYP *G,
    data->NUMBER_OF_WORDS = (int **)calloc(data->Z_no, sizeof(int *));
    data->N = (matrix_TYP ***)calloc(data->Z_no, sizeof(matrix_TYP **));
    data->X = (matrix_TYP ***)calloc(data->Z_no, sizeof(matrix_TYP **));
-   data->names = (MP_INT **)calloc(data->Z_no, sizeof(MP_INT *));
+   data->names = (mpz_t **)calloc(data->Z_no, sizeof(mpz_t *));
    if (!data->l_option)
       data->names_int = (int **)calloc(data->Z_no, sizeof(int *));
    data->gen_inv = (matrix_TYP ***)calloc(data->Z_no, sizeof(matrix_TYP **));

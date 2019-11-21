@@ -66,7 +66,7 @@ typedef struct
 void display_HM_symbol(const char *qname,
                        int zname1,
                        int zname2,
-                       MP_INT *aff_name);
+                       mpz_t *aff_name);
 
 /*************************************************************************
 |  FILE : Q_catalog.c
@@ -102,7 +102,7 @@ void free_database (database *datas);
 matrix_TYP *aff_class_inf(bravais_TYP *R,
                           bravais_TYP *DATAZ,
                           matrix_TYP *PRES,
-                          MP_INT *aff_name,
+                          mpz_t *aff_name,
                           bravais_TYP **RC);
 
 void extend(matrix_TYP *T);
@@ -164,12 +164,12 @@ bravais_TYP *split_extension(bravais_TYP *G);
 
 bravais_TYP *get_affine_class_by_name(bravais_TYP *G,
                                      matrix_TYP *PRES,
-                                     MP_INT *aff_name,
+                                     mpz_t *aff_name,
                                      int check);
 
 bravais_TYP *reverse_name(const char *qname,
                           int zname[2],
-			  MP_INT aff_name,
+			  mpz_t aff_name,
 			  int i,
 			  boolean iflag,
 			  char **affstring);

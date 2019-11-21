@@ -165,7 +165,7 @@ bravais_TYP *split_extension(bravais_TYP *G)
 
 bravais_TYP *get_affine_class_by_name(bravais_TYP *G,
                                      matrix_TYP *PRES,
-                                     MP_INT *aff_name,
+                                     mpz_t *aff_name,
                                      int check)
 {
 
@@ -178,7 +178,7 @@ bravais_TYP *get_affine_class_by_name(bravais_TYP *G,
 
    word *relator;
 
-   MP_INT standart_name,
+   mpz_t standart_name,
           coho_size;
 
    int i,
@@ -292,7 +292,7 @@ bravais_TYP *get_affine_class_by_name(bravais_TYP *G,
 
 bravais_TYP *reverse_name(const char qname[1024],
                           int zname[2],
-			  MP_INT aff_name,
+			  mpz_t aff_name,
 			  int i,
 			  boolean iflag,
 			  char **affstring)

@@ -28,7 +28,7 @@ matrix_TYP *
 long_qbase (matrix_TYP *Mat)
 {
   int i,j, rang, neurang, n;
-  MP_INT **M;
+  mpz_t **M;
   matrix_TYP *erg;
  
   n = Mat->cols;

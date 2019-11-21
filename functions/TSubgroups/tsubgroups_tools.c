@@ -116,7 +116,7 @@ matrix_TYP **get_words(const char *pfad,
 
    FILE *infile;
 
-   MP_INT aff_name;
+   mpz_t aff_name;
 
    boolean FLAG;
 

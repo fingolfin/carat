@@ -23,8 +23,8 @@
 matrix_TYP *
 long_kernel_mat (matrix_TYP *A)
 {
-   MP_INT ***E, **MA;
-   MP_INT Ekgv;
+   mpz_t ***E, **MA;
+   mpz_t Ekgv;
    int Ecols, i,j;
    matrix_TYP *erg, *ergt;
 

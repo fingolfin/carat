@@ -16,8 +16,8 @@
 
 /************************************************************************\
 @-------------------------------------------------------------------------
-@ MP_INT ***MP_solve_mat(M, rows, cols, B, Bcols, X1cols, X0kgv)
-@ MP_INT **M, **B, *X0kgv;
+@ mpz_t ***MP_solve_mat(M, rows, cols, B, Bcols, X1cols, X0kgv)
+@ mpz_t **M, **B, *X0kgv;
 @ int rows, cols, Bcols, *X1cols;
 @
 @ MP_solve_mat(M) calculates Matrix X[0] with MX[0] = B, and
@@ -28,12 +28,12 @@
 @-------------------------------------------------------------------------
 @
 \************************************************************************/
-MP_INT ***
-MP_solve_mat (MP_INT **M, int rows, int cols, MP_INT **B, int Bcols, int *X1cols, MP_INT *X0kgv)
+mpz_t ***
+MP_solve_mat (mpz_t **M, int rows, int cols, mpz_t **B, int Bcols, int *X1cols, mpz_t *X0kgv)
 {
-   MP_INT **Mt, **Trf, ***erg, *Y, *Z;
-   MP_INT kgv, altkgv, merk, merk1, g;
-   MP_INT zaehler, nenner, b;
+   mpz_t **Mt, **Trf, ***erg, *Y, *Z;
+   mpz_t kgv, altkgv, merk, merk1, g;
+   mpz_t zaehler, nenner, b;
    int i,j,k,rang;
    int tester, dim;
 
@@ -42,18 +42,18 @@ MP_solve_mat (MP_INT **M, int rows, int cols, MP_INT **B, int Bcols, int *X1cols
      MP_row_gauss(M, rows, cols);
    else
      MP_row_gauss_simultaneous(M, rows, cols, B, Bcols);
-   Mt = (MP_INT **)xmalloc(cols *sizeof(MP_INT *));
+   Mt = (mpz_t **)xmalloc(cols *sizeof(mpz_t *));
    for(i=0;i<cols;i++)
    {
-     Mt[i] = (MP_INT *)xmalloc(rows *sizeof(MP_INT));
+     Mt[i] = (mpz_t *)xmalloc(rows *sizeof(mpz_t));
    }
    for(i=0;i<rows;i++)
      for(j=0;j<cols;j++)
        mpz_init_set(&Mt[j][i], &M[i][j]);
-   Trf = (MP_INT **)xmalloc(cols *sizeof(MP_INT *));
+   Trf = (mpz_t **)xmalloc(cols *sizeof(mpz_t *));
    for(i=0;i<cols;i++)
    {
-     Trf[i] = (MP_INT *)xmalloc(cols *sizeof(MP_INT));
+     Trf[i] = (mpz_t *)xmalloc(cols *sizeof(mpz_t));
      for(j=0;j<cols;j++)
         mpz_init(&Trf[i][j]);
      mpz_set_si(&Trf[i][i], 1);
@@ -67,7 +67,7 @@ MP_solve_mat (MP_INT **M, int rows, int cols, MP_INT **B, int Bcols, int *X1cols
    dim = cols - rang;
    *X1cols = dim;
 
-   erg = (MP_INT ***)xmalloc(2 *sizeof(MP_INT **));
+   erg = (mpz_t ***)xmalloc(2 *sizeof(mpz_t **));
 
    {
       /*********************************************************************\
@@ -80,11 +80,11 @@ MP_solve_mat (MP_INT **M, int rows, int cols, MP_INT **B, int Bcols, int *X1cols
      }
      else
      {
-       erg[1] = (MP_INT  **)xmalloc(dim *sizeof(MP_INT *));
+       erg[1] = (mpz_t  **)xmalloc(dim *sizeof(mpz_t *));
 
        for(i=0;i<dim;i++)
        {
-         erg[1][i] = (MP_INT  *)xmalloc(cols *sizeof(MP_INT));
+         erg[1][i] = (mpz_t  *)xmalloc(cols *sizeof(mpz_t));
        }
        for(i=0;i<dim;i++)
           for(j=0;j<cols;j++)
@@ -115,18 +115,18 @@ MP_solve_mat (MP_INT **M, int rows, int cols, MP_INT **B, int Bcols, int *X1cols
       | calculate a solution of the inhomogenous equation
       | Write this solution to erg[0]
       \*********************************************************************/
-      erg[0] = (MP_INT **)xmalloc(cols *sizeof(MP_INT *));
+      erg[0] = (mpz_t **)xmalloc(cols *sizeof(mpz_t *));
 
        for(i=0;i<cols;i++)
        {
-         erg[0][i] = (MP_INT  *)xmalloc(Bcols *sizeof(MP_INT));
+         erg[0][i] = (mpz_t  *)xmalloc(Bcols *sizeof(mpz_t));
          for(j=0;j<Bcols;j++)
            mpz_init(&erg[0][i][j]);
        }
-      Y = (MP_INT *)xmalloc(cols *sizeof(MP_INT));
+      Y = (mpz_t *)xmalloc(cols *sizeof(mpz_t));
       for(i=0;i<cols;i++)
         mpz_init(&Y[i]);
-      Z = (MP_INT *)xmalloc(cols *sizeof(MP_INT));
+      Z = (mpz_t *)xmalloc(cols *sizeof(mpz_t));
       for(i=0;i<cols;i++)
         mpz_init(&Z[i]);
       mpz_init_set_si(&altkgv,1);

@@ -8,44 +8,44 @@
 /*-------------------------------------------------------------*\
 | FILE: MP_conv_mat.c
 \*-------------------------------------------------------------*/
-extern MP_INT **matrix_to_MP_mat(matrix_TYP *M);
-extern matrix_TYP *MP_mat_to_matrix(MP_INT **M, int rows, int cols);
-extern void write_MP_mat_to_matrix(matrix_TYP *Mat, MP_INT **mp);
-extern MP_INT **init_MP_mat(int rows, int cols);
-extern void free_MP_mat(MP_INT **M, int rows, int cols);
+extern mpz_t **matrix_to_MP_mat(matrix_TYP *M);
+extern matrix_TYP *MP_mat_to_matrix(mpz_t **M, int rows, int cols);
+extern void write_MP_mat_to_matrix(matrix_TYP *Mat, mpz_t **mp);
+extern mpz_t **init_MP_mat(int rows, int cols);
+extern void free_MP_mat(mpz_t **M, int rows, int cols);
 
 /*-------------------------------------------------------------*\
 | FILE: MP_gauss.c
 \*-------------------------------------------------------------*/
-extern int MP_trf_gauss(MP_INT **M, MP_INT **Trf, int rows, int cols);
-extern int MP_row_gauss(MP_INT **M, int rows, int cols);
-extern int MP_row_gauss_simultaneous(MP_INT **M, int rows, int cols,
-     MP_INT **B, int Bcols);
-extern void MP_row_gauss_reverse(MP_INT **A,int rows,int cols,int option);
+extern int MP_trf_gauss(mpz_t **M, mpz_t **Trf, int rows, int cols);
+extern int MP_row_gauss(mpz_t **M, int rows, int cols);
+extern int MP_row_gauss_simultaneous(mpz_t **M, int rows, int cols,
+     mpz_t **B, int Bcols);
+extern void MP_row_gauss_reverse(mpz_t **A,int rows,int cols,int option);
 
 /*-------------------------------------------------------------*\
 | FILE: MP_hnf.c
 \*-------------------------------------------------------------*/
-extern int MP_trf_hnf(MP_INT **M, MP_INT **Trf, int rows, int cols);
-extern int MP_hnf(MP_INT **M, int rows, int cols);
-extern int MP_hnf_simultaneous(MP_INT **M, int rows, int cols, MP_INT **B,
+extern int MP_trf_hnf(mpz_t **M, mpz_t **Trf, int rows, int cols);
+extern int MP_hnf(mpz_t **M, int rows, int cols);
+extern int MP_hnf_simultaneous(mpz_t **M, int rows, int cols, mpz_t **B,
      int Bcols);
 
 /*-------------------------------------------------------------*\
 | FILE: MP_pair_red.c
 \*-------------------------------------------------------------*/
-extern void MP_pair_red(MP_INT **G, MP_INT **T, int n);
+extern void MP_pair_red(mpz_t **G, mpz_t **T, int n);
 
 /*-------------------------------------------------------------*\
 | FILE: MP_red_sort.c
 \*-------------------------------------------------------------*/
-extern void MP_reduction_sort(MP_INT **G,MP_INT **T,int n);
+extern void MP_reduction_sort(mpz_t **G,mpz_t **T,int n);
 
 /*-------------------------------------------------------------*\
 | FILE: MP_solve.c
 \*-------------------------------------------------------------*/
-extern MP_INT ***MP_solve_mat(MP_INT **M, int rows, int cols, MP_INT **B,
-     int Bcols, int *X1cols, MP_INT *X0kgv);
+extern mpz_t ***MP_solve_mat(mpz_t **M, int rows, int cols, mpz_t **B,
+     int Bcols, int *X1cols, mpz_t *X0kgv);
 
 /*-------------------------------------------------------------*\
 | FILE: long_elt.c
@@ -99,6 +99,6 @@ extern matrix_TYP **long_solve_mat(matrix_TYP *A, matrix_TYP *B);
 /*-------------------------------------------------------------*\
 | FILE: dump_MP_mat.c
 \*-------------------------------------------------------------*/
-extern void dump_MP_mat(MP_INT **Mat, int rows, int cols, const char *comment);
+extern void dump_MP_mat(mpz_t **Mat, int rows, int cols, const char *comment);
 
 #endif

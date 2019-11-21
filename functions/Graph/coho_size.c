@@ -11,11 +11,11 @@
 @
 @   matrix_TYP *D:         2nd matrix returned by cohomolgy for G.
 *************************************************************************/
-MP_INT cohomology_size(matrix_TYP *D)
+mpz_t cohomology_size(matrix_TYP *D)
 {
    int first, i;
 
-   MP_INT coho_size;
+   mpz_t coho_size;
 
 
    for (first = 0; first < D->cols && D->array.SZ[first][first] == 1; first++);

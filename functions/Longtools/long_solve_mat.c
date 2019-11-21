@@ -26,8 +26,8 @@
 matrix_TYP **
 long_solve_mat (matrix_TYP *A, matrix_TYP *B)
 {
-   MP_INT ***E, **MA, **MB;
-   MP_INT Ekgv;
+   mpz_t ***E, **MA, **MB;
+   mpz_t Ekgv;
    int Ecols, i,j;
    matrix_TYP **erg;
    matrix_TYP *et;

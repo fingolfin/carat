@@ -42,10 +42,10 @@ long_elt_mat (matrix_TYP *left_trans, matrix_TYP *Mat, matrix_TYP *right_trans)
 
    int i, j, m, step, stepclear;
    int cols, rows, rang;
-   MP_INT **trf = 0, **M, **Mt, *merkpointer, **rtrf = 0, *help, **hilf;
+   mpz_t **trf = 0, **M, **Mt, *merkpointer, **rtrf = 0, *help, **hilf;
    matrix_TYP *erg;
    int t_option, r_t_option;
-   MP_INT a1, a2, x1, x2, y1, y2, merk, g, f, o, pos1, pos2;
+   mpz_t a1, a2, x1, x2, y1, y2, merk, g, f, o, pos1, pos2;
  
    cols = Mat->cols;
    rows = Mat->rows;
@@ -98,15 +98,15 @@ long_elt_mat (matrix_TYP *left_trans, matrix_TYP *Mat, matrix_TYP *right_trans)
    \***************************************************************/
    if(r_t_option == TRUE)
    {
-     rtrf = (MP_INT **)xmalloc(cols *sizeof(MP_INT *));
+     rtrf = (mpz_t **)xmalloc(cols *sizeof(mpz_t *));
      for(i=0;i<cols;i++)
      {
-       rtrf[i] = (MP_INT *)xmalloc(cols *sizeof(MP_INT));
+       rtrf[i] = (mpz_t *)xmalloc(cols *sizeof(mpz_t));
      }
-     hilf = (MP_INT **)xmalloc(cols *sizeof(MP_INT *));
+     hilf = (mpz_t **)xmalloc(cols *sizeof(mpz_t *));
      for(i=0;i<cols;i++)
      {
-       hilf[i] = (MP_INT *)xmalloc(cols *sizeof(MP_INT));
+       hilf[i] = (mpz_t *)xmalloc(cols *sizeof(mpz_t));
        for(j=0;j<cols;j++)
        {
        mpz_init_set_si(&hilf[i][j], right_trans->array.SZ[j][i]);
@@ -117,10 +117,10 @@ long_elt_mat (matrix_TYP *left_trans, matrix_TYP *Mat, matrix_TYP *right_trans)
    /***************************************************************\
    | Set Mt= Mat^{tr} transform Mt to Hermite normal form.
    \***************************************************************/
-   Mt = (MP_INT **)xmalloc(cols *sizeof(MP_INT *));
+   Mt = (mpz_t **)xmalloc(cols *sizeof(mpz_t *));
    for(i=0;i<cols;i++)
    {
-     Mt[i] = (MP_INT *)xmalloc(rows *sizeof(MP_INT));
+     Mt[i] = (mpz_t *)xmalloc(rows *sizeof(mpz_t));
      for(j=0;j<rows;j++)
        mpz_init_set_si(&Mt[i][j], Mat->array.SZ[j][i]);
    }
@@ -140,10 +140,10 @@ long_elt_mat (matrix_TYP *left_trans, matrix_TYP *Mat, matrix_TYP *right_trans)
    \***************************************************************/
    if(t_option == TRUE)
    {
-     trf = (MP_INT **)xmalloc(rows *sizeof(MP_INT *));
+     trf = (mpz_t **)xmalloc(rows *sizeof(mpz_t *));
      for(i=0;i<rows;i++)
      {
-       trf[i] = (MP_INT *)xmalloc(rows *sizeof(MP_INT));
+       trf[i] = (mpz_t *)xmalloc(rows *sizeof(mpz_t));
        for(j=0;j<rows;j++)
          mpz_init_set_si(&trf[i][j], left_trans->array.SZ[i][j]);
      }
@@ -152,10 +152,10 @@ long_elt_mat (matrix_TYP *left_trans, matrix_TYP *Mat, matrix_TYP *right_trans)
    /***************************************************************\
    | Set M= Mt^{tr} transform Mt to Hermite normal form.
    \***************************************************************/
-   M = (MP_INT **)xmalloc(rows *sizeof(MP_INT *));
+   M = (mpz_t **)xmalloc(rows *sizeof(mpz_t *));
    for(i=0;i<rows;i++)
    {
-     M[i] = (MP_INT *)xmalloc(cols *sizeof(MP_INT));
+     M[i] = (mpz_t *)xmalloc(cols *sizeof(mpz_t));
      for(j=0;j<cols;j++)
        mpz_init_set(&M[i][j], &Mt[j][i]);
    }
@@ -520,7 +520,7 @@ long_elt_mat (matrix_TYP *left_trans, matrix_TYP *Mat, matrix_TYP *right_trans)
              }
              if(r_t_option == TRUE)
              {
-               help = (MP_INT *)xmalloc(cols *sizeof(MP_INT));
+               help = (mpz_t *)xmalloc(cols *sizeof(mpz_t));
                for(j=0;j<cols;j++)
                {
                   mpz_init_set(&help[j], &rtrf[j][step]);

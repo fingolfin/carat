@@ -15,20 +15,20 @@
 /**************************************************************************\
 @---------------------------------------------------------------------------
 @ void MP_reduction_sort(G,T,n)
-@ MP_INT **G, **T;
+@ mpz_t **G, **T;
 @ int n;
 @
-@ The same as 'red_sort' in directory 'Reduction' for MP_INT** insted
+@ The same as 'red_sort' in directory 'Reduction' for mpz_t** insted
 @ of matrix_TYP*
 @---------------------------------------------------------------------------
 @
 \**************************************************************************/
 void 
-MP_reduction_sort (MP_INT **G, MP_INT **T, int n)
+MP_reduction_sort (mpz_t **G, mpz_t **T, int n)
 {
   int i,j;
   int minpos;
-  MP_INT min, *tmp, merk;
+  mpz_t min, *tmp, merk;
 
   mpz_init(&min);
   mpz_init(&merk);

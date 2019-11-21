@@ -27,12 +27,12 @@ static void remove_underscore(char *s)
 @ void display_HM_symbol(const char *qname,
 @                        int zname1,
 @                        int zname2,
-@                        MP_INT *aff_name)
+@                        mpz_t *aff_name)
 **************************************************************************/
 void display_HM_symbol(const char *qname,
                        int zname1,
                        int zname2,
-                       MP_INT *aff_name)
+                       mpz_t *aff_name)
 {
 
    int number,

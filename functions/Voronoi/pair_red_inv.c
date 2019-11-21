@@ -30,8 +30,8 @@
 matrix_TYP *
 pair_red_inv (matrix_TYP *A, matrix_TYP *T)
 {
-   MP_INT ***E, **MA, **MB, **Trf;
-   MP_INT Ekgv;
+   mpz_t ***E, **MA, **MB, **Trf;
+   mpz_t Ekgv;
    int Ecols;
    matrix_TYP *erg;
    int i,j;
@@ -43,10 +43,10 @@ pair_red_inv (matrix_TYP *A, matrix_TYP *T)
      exit(3);
    }
    MA = matrix_to_MP_mat(A);
-   MB = (MP_INT **) xmalloc(A->cols *sizeof(MP_INT *));
+   MB = (mpz_t **) xmalloc(A->cols *sizeof(mpz_t *));
    for(i=0;i<A->cols;i++)
    {
-     MB[i] = (MP_INT *) xmalloc(A->cols *sizeof(MP_INT));
+     MB[i] = (mpz_t *) xmalloc(A->cols *sizeof(mpz_t));
      for(j=0;j<A->cols;j++)
        mpz_init(&MB[i][j]);
      mpz_set_si(&MB[i][i], 1);
@@ -73,10 +73,10 @@ pair_red_inv (matrix_TYP *A, matrix_TYP *T)
      printf("Error in 'long_mat_inv'\n");
      exit(3);
    }
-   Trf = (MP_INT **)xmalloc(A->cols *sizeof(MP_INT *));
+   Trf = (mpz_t **)xmalloc(A->cols *sizeof(mpz_t *));
    for(i=0;i<A->cols;i++)
    {
-     Trf[i] = (MP_INT *)xmalloc(A->cols *sizeof(MP_INT));
+     Trf[i] = (mpz_t *)xmalloc(A->cols *sizeof(mpz_t));
      for(j=0;j<A->cols;j++)
         mpz_init(&Trf[i][j]);
      mpz_set_si(&Trf[i][i], 1);

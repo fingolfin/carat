@@ -64,7 +64,7 @@ static int CohomSize(matrix_TYP **H_G_Z)
 {
   int n;
 
-  MP_INT cohom_size;
+  mpz_t cohom_size;
 
 
   if (H_G_Z[0]->cols <1){

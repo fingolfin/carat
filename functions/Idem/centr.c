@@ -177,7 +177,7 @@ matrix_TYP **calc_ccentralizer(matrix_TYP **centr,int dim_centr,
 
 int is_zero(matrix_TYP *pol,int x)
 {
-   MP_INT sum,
+   mpz_t sum,
           pot,
           tmp;
 
